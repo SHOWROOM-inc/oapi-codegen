@@ -3,9 +3,9 @@ package externalref
 import (
 	"testing"
 
-	packageA "github.com/oapi-codegen/oapi-codegen/v2/internal/test/externalref/packageA"
-	packageB "github.com/oapi-codegen/oapi-codegen/v2/internal/test/externalref/packageB"
-	petstore "github.com/oapi-codegen/oapi-codegen/v2/internal/test/externalref/petstore"
+	packageA "github.com/SHOWROOM-inc/oapi-codegen/v2/internal/test/externalref/packageA"
+	packageB "github.com/SHOWROOM-inc/oapi-codegen/v2/internal/test/externalref/packageB"
+	petstore "github.com/SHOWROOM-inc/oapi-codegen/v2/internal/test/externalref/petstore"
 	"github.com/stretchr/testify/require"
 )
 
