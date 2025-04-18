@@ -740,7 +740,7 @@ func GenFieldsFromProperties(props []Property) []string {
 				fieldTags["yaml"] = p.JsonFieldName + ",omitempty"
 			}
 			if p.NeedsFormTag {
-				fieldTags["form"] = p.JsonFieldName + ",omitempty"
+				fieldTags["form"] = p.JsonFieldName
 			}
 		}
 
