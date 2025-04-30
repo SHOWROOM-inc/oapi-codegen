@@ -77,7 +77,7 @@ type GetTestByNameResponse struct {
 	assert.Contains(t, code, "Top *int `form:\"$top\" json:\"$top,omitempty\"`")
 	assert.Contains(t, code, "func (c *Client) GetTestByName(ctx context.Context, name string, params *GetTestByNameParams, reqEditors ...RequestEditorFn) (*http.Response, error) {")
 	assert.Contains(t, code, "func (c *ClientWithResponses) GetTestByNameWithResponse(ctx context.Context, name string, params *GetTestByNameParams, reqEditors ...RequestEditorFn) (*GetTestByNameResponse, error) {")
-	assert.Contains(t, code, "DeadSince *time.Time    `json:\"dead_since,omitempty\" tag1:\"value1\" tag2:\"value2\"`")
+	assert.Contains(t, code, "DeadSince *time.Time    `form:\"dead_since\" json:\"dead_since,omitempty\" tag1:\"value1\" tag2:\"value2\"`")
 	assert.Contains(t, code, "type EnumTestNumerics int")
 	assert.Contains(t, code, "N2 EnumTestNumerics = 2")
 	assert.Contains(t, code, "type EnumTestEnumNames int")
@@ -110,17 +110,17 @@ func TestExtPropGoTypeSkipOptionalPointer(t *testing.T) {
 	assert.NoError(t, err)
 
 	// Check that optional pointer fields are skipped if requested
-	assert.Contains(t, code, "NullableFieldSkipFalse *string `json:\"nullableFieldSkipFalse\"`")
-	assert.Contains(t, code, "NullableFieldSkipTrue  string  `json:\"nullableFieldSkipTrue\"`")
-	assert.Contains(t, code, "OptionalField          *string `json:\"optionalField,omitempty\"`")
-	assert.Contains(t, code, "OptionalFieldSkipFalse *string `json:\"optionalFieldSkipFalse,omitempty\"`")
-	assert.Contains(t, code, "OptionalFieldSkipTrue  string  `json:\"optionalFieldSkipTrue,omitempty\"`")
+	assert.Contains(t, code, "NullableFieldSkipFalse *string `form:\"nullableFieldSkipFalse\" json:\"nullableFieldSkipFalse\"`")
+	assert.Contains(t, code, "NullableFieldSkipTrue  string  `form:\"nullableFieldSkipTrue\" json:\"nullableFieldSkipTrue\"`")
+	assert.Contains(t, code, "OptionalField          *string `form:\"optionalField\" json:\"optionalField,omitempty\"`")
+	assert.Contains(t, code, "OptionalFieldSkipFalse *string `form:\"optionalFieldSkipFalse\" json:\"optionalFieldSkipFalse,omitempty\"`")
+	assert.Contains(t, code, "OptionalFieldSkipTrue  string  `form:\"optionalFieldSkipTrue\" json:\"optionalFieldSkipTrue,omitempty\"`")
 
 	// Check that the extension applies on custom types as well
-	assert.Contains(t, code, "CustomTypeWithSkipTrue string  `json:\"customTypeWithSkipTrue,omitempty\"`")
+	assert.Contains(t, code, "CustomTypeWithSkipTrue string  `form:\"customTypeWithSkipTrue\" json:\"customTypeWithSkipTrue,omitempty\"`")
 
 	// Check that the extension has no effect on required fields
-	assert.Contains(t, code, "RequiredField          string  `json:\"requiredField\"`")
+	assert.Contains(t, code, "RequiredField          string  `form:\"requiredField\" json:\"requiredField\"`")
 }
 
 func TestGoTypeImport(t *testing.T) {
